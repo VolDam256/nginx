@@ -15,6 +15,7 @@ const StaticPropsDetail = ({ item, errors }: Props) => {
   const pathname2 = useRouter().asPath;
   useEffect(() => {
     const arr = pathname2.split('/');
+    // useRouter().query.id - так правильно, а не самому парсить адрес
     if (isNaN(+arr[2])) {
       Router.push('/')
     }
@@ -42,6 +43,7 @@ const StaticPropsDetail = ({ item, errors }: Props) => {
 
 export default StaticPropsDetail
 
+// А какой смысл этого? Не очень понимаю
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = sampleUserData.map((user) => ({
     params: { id: user.id.toString() },
@@ -51,6 +53,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   try {
     const id = params?.id
+    // Ненене, то, что на js ты данные получил - вроде то как хорошо, но у тебя же здесь должен быть зарпос на сервер -
+    // в 90% случаев сервер будет отдельный проект и нельзя просто переменную импортировать
     const item = sampleUserData.find((data) => data.id === Number(id))
     return { props: { item } }
   } catch (err) {

@@ -5,7 +5,11 @@ import Head from 'next/head'
 type Props = {
   children?: ReactNode
   title?: string
-}
+} // Всегда очень удобно для таких компонентов передавать все пропсы из div
+
+/**
+ * При такой структуре components у тебя негде стили размещать. Ну или хаос будет - мы не просто так для каждого компонента создаем директорию отдельную.
+ */
 
 const Layout = ({ children, title }: Props) => (
   <div>

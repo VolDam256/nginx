@@ -6,6 +6,7 @@ type ListDetailProps = {
   item: Product
 }
 
+// Не, не так объявляется типизация пропсов - React.FC<YourType> - вот такая типизация актуальна и в react и в next
 const ListDetail = ({ item: user }: ListDetailProps) => (
   <div>
     <h1>Detail for {user.name}</h1>
